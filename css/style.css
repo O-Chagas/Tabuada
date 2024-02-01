@@ -1,0 +1,23 @@
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    margin: 5px 0px 10px 5px;
+}
+
+label {
+    font-size: 1rem;
+    margin: 5px 0px 10px 5px;
+}
+
+h2 {
+    margin: 5px 0px 10px 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    text-decoration: underline 2px #000000;
+}
+
+input {
+    font-size: 1rem;
+    background-color: #b2d3c0;
+    color: #f00e0ee3;
+}
