@@ -1,5 +1,7 @@
 const botaoDisparaTabuadaConsole = document.querySelector('.btn-console');
 
+const caixaEntradaTabuada = document.querySelector('#tabuada-number');
+
 botaoDisparaTabuadaConsole.addEventListener('click', () => {
     const entradaUsuario = parseInt(document.querySelector('#tabuada-number').value);
     mostrarTabuadaNoConsole(entradaUsuario);
@@ -26,24 +28,54 @@ botaoDisparaTabuadaDOM.addEventListener('click', () => {
     mostrarTabuadaNoDOM(entradaUsuario);
 });
 
-function mostrarTabuadaNoDOM(numero) {
-    const ulTabuada = document.querySelector('.tabuada');
-    ulTabuada.innerHTML = "";
-    if (!isNaN(numero)) {
+//mostrar a tabuada quando o evento clicar no Enter acontecer
 
-        const tituloTabuada = document.createElement('h3');
-        tituloTabuada.innerHTML = `Tabuada do ${numero}`;
-        ulTabuada.appendChild(tituloTabuada);
+// caixaEntradaTabuada.addEventListener('keyup', (e) => {
+//     if (e.key === 'Enter') {
+//         validarEntrada(caixaEntradaTabuada.value);
+//         mostrarTabuadaNoConsole(caixaEntradaTabuada.value);
+//         mostrarTabuadaNoDOM(caixaEntradaTabuada.value);      
 
-        let contador = 0;
-        while (contador <= 10) {
+//     }
+// })
 
-            const linhaTabuada = document.createElement('li');
-            linhaTabuada.innerHTML = `${numero} X ${contador} = ${numero * contador}`;
-            contador++
-            ulTabuada.appendChild(linhaTabuada);
-        }
-        return
+caixaEntradaTabuada.addEventListener('keyup', verificarTecla);
+//associando uma variável a um evento, teremos disponíveis os dados do evento em si e os dados do elemento
+
+//caixaEntradaTabuada.addEventListener('keyup', this, verificarTecla);
+
+function verificarTecla(e){
+    if (e.key === 'Enter'){
+        validarEntrada(this.value);
+        mostrarTabuadaNoConsole(this.value);
+        mostrarTabuadaNoDOM(this.value);
     }
-    ulTabuada.innerHTML = "Não é um número, por favor digitar novamente!";
 }
+
+function validarEntrada(numero) {
+    if (isNaN(numero)) {
+        return "Número inválido! Digite um número válido";
+    }
+}
+
+    function mostrarTabuadaNoDOM(numero) {
+        const ulTabuada = document.querySelector('.tabuada');
+        ulTabuada.innerHTML = "";
+        if (!isNaN(numero)) {
+
+            const tituloTabuada = document.createElement('h3');
+            tituloTabuada.innerHTML = `Tabuada do ${numero}`;
+            ulTabuada.appendChild(tituloTabuada);
+
+            let contador = 0;
+            while (contador <= 10) {
+
+                const linhaTabuada = document.createElement('li');
+                linhaTabuada.innerHTML = `${numero} X ${contador} = ${numero * contador}`;
+                contador++
+                ulTabuada.appendChild(linhaTabuada);
+            }
+            return
+        }
+        ulTabuada.innerHTML = "Não é um número, por favor digitar novamente!";
+    }
